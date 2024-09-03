@@ -1,18 +1,22 @@
 "use client";
 
-import React, { MouseEventHandler, useRef } from "react";
+import React, { FC, MouseEventHandler, PropsWithChildren, useRef } from "react";
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = 32.5 / 2;
 
-export const TiltCard = () => {
+type Props = PropsWithChildren<{
+  className?: string;
+}>;
+
+export const TiltCard: FC<Props> = ({ children, className }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -55,18 +59,20 @@ export const TiltCard = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="grid place-items-center bg-gradient-to-br from-indigo-300/10 to-violet-300/10 rounded-lg p-2"
+      className={cn(
+        "grid place-items-center rounded-lg p-2 bg-gradient-to-br from-indigo-300/10 to-violet-300/10",
+        className
+      )}
     >
-      <Image
-        src="/vision2.jpg"
-        alt="SpaceX Rocket Launch"
-        width={600}
-        height={450}
+      <div
+        className="md:relative overflow-hidden rounded-lg p-0.5 shadow-lg shadow-white/5"
         style={{
           transform: "translateZ(50px)",
         }}
-        className="text-center text-2xl font-bold rounded-lg shadow-lg"
-      />
+      >
+        <div className="hidden md:block absolute bg-gradient-conic from-transparent from-80% via-blue-500/50 via-95% to-blue-600/100 to-100% origin-center w-[200%] h-[200%] -z-10 -left-1/2 -top-1/2 animate-spin-slow" />
+        {children}
+      </div>
     </motion.div>
   );
 };

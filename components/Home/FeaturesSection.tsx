@@ -12,6 +12,10 @@ export const FeaturesSection = () => (
       <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 md:mb-12 text-blue-400">
         Unveiling the SpaceX Frontier
       </h2>
+      <p className="text-lg mx-auto text-center text-gray-400 mb-8 md:mb-12 w-full lg:w-1/2">
+        Explore the pioneering innovations of SpaceX—from groundbreaking rocket
+        launches to global satellite networks and maritime recovery operations.
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <Card className="bg-gray-800 border-gray-700 text-gray-200">
           <CardHeader>
