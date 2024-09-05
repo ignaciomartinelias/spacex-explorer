@@ -3,7 +3,7 @@
 import { RocketIcon } from "lucide-react";
 
 export const Footer = () => (
-  <footer className="w-full bg-gradient-to-b from-gray-800 to-gray-900">
+  <footer className="w-full">
     <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center">
       <div className="flex items-center mb-4 md:mb-0">
         <RocketIcon className="h-8 w-8 mr-2 text-blue-500" />

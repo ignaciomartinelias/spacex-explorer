@@ -1,14 +1,14 @@
 "use client";
 
-import { Header } from "@/components/Home/Header";
-import { Footer } from "@/components/Home/Footer";
-import { HeroSection } from "@/components/Home/HeroSection";
-import { FeaturesSection } from "@/components/Home/FeaturesSection";
-import { AboutSection } from "@/components/Home/AboutSection";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { HeroSection } from "./components/HeroSection";
+import { FeaturesSection } from "./components/FeaturesSection";
+import { AboutSection } from "./components/AboutSection";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1">
         <HeroSection />

@@ -16,7 +16,7 @@ export const HeroSection = () => (
         layout="fill"
         objectFit="cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
     </div>
     <div className="container mx-auto px-4 md:px-6 relative z-10">
       <div className="flex flex-col items-center space-y-8 md:space-y-4 text-center">
@@ -27,8 +27,8 @@ export const HeroSection = () => (
           transition={{ delay: 0.1, duration: 1 }}
         >
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
-            Explore the Universe of{" "}
-            <span className="text-blue-500">SpaceX</span> Data
+            Explore the Universe of <span className="text-primary">SpaceX</span>{" "}
+            Data
           </h1>
           <p className="mx-auto max-w-[800px] text-gray-200 md:text-xl lg:text-2xl">
             Embark on a journey through space and time. Discover the
@@ -42,20 +42,11 @@ export const HeroSection = () => (
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 1 }}
         >
-          <Button
-            size="lg"
-            className="bg-blue-500 hover:bg-blue-600 text-white"
-            asChild
-          >
+          <Button size="lg" asChild>
             <Link href="/explore">Start Exploring</Link>
           </Button>
 
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="hidden md:inline-flex border-white bg-transparent text-white hover:bg-white hover:text-black"
-          >
+          <Button asChild variant="outline" size="lg">
             <Link href="#features">Learn More</Link>
           </Button>
         </motion.div>
