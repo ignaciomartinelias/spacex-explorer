@@ -6,8 +6,8 @@ type Fairings = {
 };
 
 type Patch = {
-  small: string;
-  large: string;
+  small: string | null;
+  large: string | null;
 };
 
 type Reddit = {
@@ -27,10 +27,10 @@ type Links = {
   reddit: Reddit;
   flickr: Flickr;
   presskit: string | null;
-  webcast: string;
-  youtubeId: string;
-  article: string;
-  wikipedia: string;
+  webcast: string | null;
+  youtubeId: string | null;
+  article: string | null;
+  wikipedia: string | null;
 };
 
 type Failure = {

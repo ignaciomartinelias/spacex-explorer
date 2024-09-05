@@ -5,6 +5,9 @@ export const queryLaunches = async ({ pageParam }: { pageParam: number }) => {
     options: {
       limit: 10,
       page: pageParam,
+      sort: {
+        flightNumber: "desc",
+      },
     },
   });
 
