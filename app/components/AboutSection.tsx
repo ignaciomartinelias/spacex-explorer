@@ -41,7 +41,7 @@ export const AboutSection = () => (
             alt="SpaceX Rocket Launch"
             width={800}
             height={600}
-            className="text-center text-2xl font-bold rounded-lg"
+            className="rounded-lg"
           />
         </TiltCard>
       </div>

@@ -79,7 +79,7 @@ export const Sidebar = () => (
           </CardDescription>
         </CardHeader>
         <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-          <Button size="sm" className="w-full">
+          <Button size="sm" variant="secondary" className="w-full">
             Learn More
           </Button>
         </CardContent>

@@ -8,13 +8,13 @@ import { format } from "date-fns";
 import { useRocketsQuery } from "@/api/rockets/queries";
 
 import Image from "next/image";
-import { useLaunchPadsQuery } from "@/api/launchPads/queries";
+import { useLaunchpadsQuery } from "@/api/launchpads/queries";
 
 type Props = { launch: Launch };
 
 export const LaunchCard = ({ launch }: Props) => {
   const { data: rockets } = useRocketsQuery();
-  const { data: launchPads } = useLaunchPadsQuery();
+  const { data: launchPads } = useLaunchpadsQuery();
 
   const rocket = rockets?.find((rocket) => rocket.id === launch.rocket);
   const launchPad = launchPads?.find((lp) => lp.id === launch.launchpad);

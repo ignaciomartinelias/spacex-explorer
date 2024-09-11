@@ -1,12 +1,9 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "../queryKeys";
-import { queryLaunches } from "./api";
+import { fetchLaunches } from "./api";
 
-export const useLaunchesInfiniteQuery = () =>
-  useInfiniteQuery({
+export const useLaunchesQuery = () =>
+  useQuery({
     queryKey: queryKeys.launches,
-    queryFn: queryLaunches,
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) =>
-      lastPage.hasNextPage ? lastPage.page + 1 : undefined,
+    queryFn: fetchLaunches,
   });

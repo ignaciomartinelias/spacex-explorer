@@ -1,9 +1,7 @@
-type Images = {
-  large: string[];
-};
-
-type LaunchPad = {
-  images: Images;
+type Launchpad = {
+  images: {
+    large: string[];
+  };
   name: string;
   fullName: string;
   locality: string;
@@ -20,4 +18,4 @@ type LaunchPad = {
   id: string;
 };
 
-type FetchLaunchPadsResponse = LaunchPad[];
+type FetchLaunchpadsResponse = Launchpad[];

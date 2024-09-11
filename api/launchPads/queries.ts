@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "../queryKeys";
-import { fetchLaunchPads } from "./api";
+import { fetchLaunchpads } from "./api";
 
-export const useLaunchPadsQuery = () =>
+export const useLaunchpadsQuery = () =>
   useQuery({
-    queryKey: queryKeys.launchPads,
-    queryFn: fetchLaunchPads,
+    queryKey: queryKeys.launchpads,
+    queryFn: fetchLaunchpads,
   });

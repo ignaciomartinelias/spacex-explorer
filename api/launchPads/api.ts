@@ -1,6 +1,6 @@
 import { axiosInstance } from "@/services/axios";
 
-export const fetchLaunchPads = async () => {
+export const fetchLaunchpads = async () => {
   const response = await axiosInstance.get("/v4/launchpads");
-  return response.data as FetchLaunchPadsResponse;
+  return response.data as FetchLaunchpadsResponse;
 };

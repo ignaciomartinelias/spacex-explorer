@@ -4,7 +4,19 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images2.imgbox.com",
+        hostname: "*.imgbox.com",
+      },
+      {
+        protocol: "https",
+        hostname: "imgur.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.imgur.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.staticflickr.com",
       },
     ],
   },

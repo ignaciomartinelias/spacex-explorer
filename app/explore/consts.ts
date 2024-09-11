@@ -1,12 +1,9 @@
 import {
   Rocket,
-  Box,
   Users,
-  Flame,
   Radar,
   Calendar,
   MapPin,
-  Package,
   Ship,
   Building,
   Car,
@@ -22,22 +19,7 @@ export const categories: {
   >;
   href: string;
 }[] = [
-  {
-    name: "Capsules",
-    Icon: Box,
-    href: "/explore/capsules",
-  },
-  {
-    name: "Cores",
-    Icon: Rocket,
-    href: "/explore/cores",
-  },
   { name: "Crew", Icon: Users, href: "/explore/crew" },
-  {
-    name: "Dragons",
-    Icon: Flame,
-    href: "/explore/dragons",
-  },
   {
     name: "Landpads",
     Icon: Radar,
@@ -52,11 +34,6 @@ export const categories: {
     name: "Launchpads",
     Icon: MapPin,
     href: "/explore/launchpads",
-  },
-  {
-    name: "Payloads",
-    Icon: Package,
-    href: "/explore/payloads",
   },
   {
     name: "Rockets",
