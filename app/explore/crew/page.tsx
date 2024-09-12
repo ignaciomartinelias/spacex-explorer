@@ -1,6 +1,6 @@
 "use client";
 
-import { useCrewQuery } from "@/api/crew/queries";
+import { useCrewQuery } from "@/apis/crew/queries";
 import { CrewMemberCard } from "./components/CrewMemberCard";
 
 export default function CrewPage() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLaunchesQuery } from "@/api/launches/queries";
+import { useLaunchesQuery } from "@/apis/launches/queries";
 
 import { LaunchCard } from "./components/LaunchCard";
 import { useState } from "react";

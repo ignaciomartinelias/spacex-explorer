@@ -1,6 +1,6 @@
 "use client";
 
-import { useLandpadsQuery } from "@/api/landpads/queries";
+import { useLandpadsQuery } from "@/apis/landpads/queries";
 import { LandpadCard } from "./components/LandpadCard";
 
 export default function LandpadsPage() {

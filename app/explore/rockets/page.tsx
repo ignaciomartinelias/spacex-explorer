@@ -1,6 +1,6 @@
 "use client";
 
-import { useRocketsQuery } from "@/api/rockets/queries";
+import { useRocketsQuery } from "@/apis/rockets/queries";
 import { RocketCard } from "./components/RocketCard";
 
 export default function RocketsPage() {

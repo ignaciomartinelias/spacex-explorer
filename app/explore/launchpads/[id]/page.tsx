@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
-import { useLaunchpadsQuery } from "@/api/launchpads/queries";
-import { useLaunchesQuery } from "@/api/launches/queries";
-import { useRocketsQuery } from "@/api/rockets/queries";
+import { useLaunchpadsQuery } from "@/apis/launchpads/queries";
+import { useLaunchesQuery } from "@/apis/launches/queries";
+import { useRocketsQuery } from "@/apis/rockets/queries";
 
 export default function LaunchpadDetailsPage({
   params,

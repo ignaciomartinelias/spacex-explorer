@@ -1,6 +1,6 @@
 "use client";
 
-import { useLaunchpadsQuery } from "@/api/launchpads/queries";
+import { useLaunchpadsQuery } from "@/apis/launchpads/queries";
 import { LaunchpadCard } from "./components/LaunchpadCard";
 
 export default function LaunchpadsPage() {

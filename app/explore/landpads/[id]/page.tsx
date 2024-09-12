@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
-import { useLandpadsQuery } from "@/api/landpads/queries";
-import { useLaunchesQuery } from "@/api/launches/queries";
+import { useLandpadsQuery } from "@/apis/landpads/queries";
+import { useLaunchesQuery } from "@/apis/launches/queries";
 
 export default function LandpadPage({ params }: { params: { id: string } }) {
   const { data: landpads } = useLandpadsQuery();

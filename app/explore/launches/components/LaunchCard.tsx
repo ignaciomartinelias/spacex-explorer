@@ -5,10 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Rocket } from "lucide-react";
 import { format } from "date-fns";
-import { useRocketsQuery } from "@/api/rockets/queries";
+import { useRocketsQuery } from "@/apis/rockets/queries";
 
 import Image from "next/image";
-import { useLaunchpadsQuery } from "@/api/launchpads/queries";
+import { useLaunchpadsQuery } from "@/apis/launchpads/queries";
 
 type Props = { launch: Launch };
 
