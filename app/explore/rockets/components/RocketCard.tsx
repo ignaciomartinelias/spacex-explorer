@@ -1,52 +1,68 @@
-import { TiltCard } from "@/app/components/TiltCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 
 export const RocketCard = ({ rocket }: { rocket: Rocket }) => {
   return (
-    <Card className="overflow-hidden p-8 md:flex">
-      <div className="md:w-2/5 w-full">
-        <TiltCard className="w-full p-2 sm:p-10 lg:w-1/2 xl:w-auto lg:p-4">
-          <Image
-            src={rocket.flickrImages[0]}
-            alt={rocket.name}
-            width={400}
-            height={300}
-            className="rounded-lg"
-          />
-        </TiltCard>
-      </div>
-      <div className="md:w-3/5 p-6 flex flex-col justify-between">
-        <div>
-          <CardHeader className="p-0 mb-4 flex flex-row items-center justify-between">
-            <CardTitle className="text-2xl">{rocket.name}</CardTitle>
-            <Badge
-              variant={rocket.active ? "default" : "secondary"}
-              className="mr-2"
-            >
-              {rocket.active ? "Active" : "Inactive"}
-            </Badge>
-          </CardHeader>
-          <CardContent className="p-0">
-            <p className="text-gray-600 dark:text-gray-300">
+    <Card key={rocket.id} className="overflow-hidden">
+      <div className="md:flex">
+        <div className="md:w-2/5 md:p-6">
+          <div className="md:h-full md:w-full relative aspect-[3/2] md:aspect-auto">
+            <Image
+              src={rocket.flickrImages[0]}
+              alt={rocket.name}
+              layout="fill"
+              objectFit="cover"
+              className="md:rounded-lg"
+            />
+          </div>
+        </div>
+        <div className="md:w-3/5 p-6">
+          <div className="flex flex-col mb-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold mb-2">{rocket.name}</h2>
+              <Badge variant={rocket.active ? "default" : "secondary"}>
+                {rocket.active ? "Active" : "Inactive"}
+              </Badge>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
               {rocket.description}
             </p>
-          </CardContent>
+          </div>
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                First Flight
+              </p>
+              <p className="font-semibold">{rocket.firstFlight}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Success Rate
+              </p>
+              <p className="font-semibold">{rocket.successRatePct}%</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Cost per Launch
+              </p>
+              <p className="font-semibold">
+                ${rocket.costPerLaunch.toLocaleString()}
+              </p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Stages</p>
+              <p className="font-semibold">{rocket.stages}</p>
+            </div>
+          </div>
+          <div className="flex justify-end">
+            <Button asChild className="w-full md:w-auto">
+              <Link href={`/explore/rockets/${rocket.name}`}>View Details</Link>
+            </Button>
+          </div>
         </div>
-        <CardFooter className="p-0 mt-4 flex justify-end items-end">
-          <Button asChild>
-            <Link href={`/rockets/${rocket.name}`}>View Details</Link>
-          </Button>
-        </CardFooter>
       </div>
     </Card>
   );

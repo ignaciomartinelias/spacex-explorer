@@ -47,8 +47,8 @@ export const PadCard = ({ pad }: { pad: Landpad | Launchpad }) => {
           )}
         </div>
       </CardContent>
-      <CardFooter className="p-4 bg-gray-50 dark:bg-gray-800">
-        <Button asChild className="w-full">
+      <CardFooter className="p-4">
+        <Button asChild className="w-full" variant="outline">
           <Link
             href={`/explore/${"type" in pad ? "landpads" : "launchpads"}/${
               pad.name

@@ -13,30 +13,20 @@ type Thrust = {
   lbf: number;
 };
 
-type FirstStage = {
-  thrustSeaLevel: Thrust;
+type Stage = {
+  thrustSeaLevel?: Thrust; // Present in first_stage, not in second_stage
   thrustVacuum: Thrust;
   reusable: boolean;
   engines: number;
   fuelAmountTons: number;
-  burnTimeSec: number | null;
-};
-
-type Payloads = {
-  compositeFairing: {
-    height: Dimensions;
-    diameter: Dimensions;
-  };
-  option1: string;
-};
-
-type SecondStage = {
-  thrust: Thrust;
-  payloads: Payloads;
-  reusable: boolean;
-  engines: number;
-  fuelAmountTons: number;
-  burnTimeSec: number | null;
+  burnTimeSec: number | null; // Present but sometimes null
+  payloads?: {
+    compositeFairing: {
+      height: Dimensions;
+      diameter: Dimensions;
+    };
+    option1: string;
+  } | null; // Sometimes present, sometimes missing
 };
 
 type ISP = {
@@ -51,8 +41,8 @@ type Engines = {
   number: number;
   type: string;
   version: string;
-  layout: string | null;
-  engineLossMax: number | null;
+  layout: string | null; // Present but sometimes null
+  engineLossMax: number | null; // Sometimes present, sometimes null
   propellant1: string;
   propellant2: string;
   thrustToWeight: number;
@@ -60,7 +50,7 @@ type Engines = {
 
 type LandingLegs = {
   number: number;
-  material: string | null;
+  material: string | null; // Sometimes present, sometimes null
 };
 
 type PayloadWeight = {
@@ -74,8 +64,8 @@ type Rocket = {
   height: Dimensions;
   diameter: Dimensions;
   mass: Mass;
-  firstStage: FirstStage;
-  secondStage: SecondStage;
+  firstStage: Stage;
+  secondStage: Stage;
   engines: Engines;
   landingLegs: LandingLegs;
   payloadWeights: PayloadWeight[];
@@ -96,3 +86,5 @@ type Rocket = {
 };
 
 type FetchRocketsResponse = QueryResponse<Rocket>;
+
+type FetchRocketResponse = QueryResponse<Rocket>;
