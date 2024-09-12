@@ -37,12 +37,14 @@ export default async function LaunchpadDetailsPage({
               objectFit="cover"
               className="rounded-t-lg"
             />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+              <h1 className="text-3xl font-bold text-white">
+                {launchpad.name}
+              </h1>
+              <p className="text-xl text-gray-300">{launchpad.fullName}</p>
+            </div>
           </div>
           <CardContent className="mt-4">
-            <h1 className="text-3xl font-bold mb-2">{launchpad.name}</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-4">
-              {launchpad.fullName}
-            </p>
             <div className="flex items-center space-x-2 mb-4">
               <Badge
                 variant={
@@ -56,29 +58,21 @@ export default async function LaunchpadDetailsPage({
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               {launchpad.details}
             </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center space-x-2">
-                <MapPinIcon className="h-5 w-5 text-gray-500" />
-                <span>
-                  {launchpad.locality}, {launchpad.region}
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <GlobeIcon className="h-5 w-5 text-gray-500" />
-                <span>
-                  Lat: {launchpad.latitude}, Long: {launchpad.longitude}
-                </span>
-              </div>
+
+            <div className="flex items-center space-x-2">
+              <MapPinIcon className="h-5 w-5 text-gray-500" />
+              <span>
+                {launchpad.locality}, {launchpad.region}
+              </span>
             </div>
           </CardContent>
         </Card>
-
         <div className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <RocketIcon className="h-5 w-5" />
-                <span>Launch Statistics</span>
+                <span>Landing Statistics</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -87,12 +81,10 @@ export default async function LaunchpadDetailsPage({
                 <p>Successes: {launchpad.launchSuccesses}</p>
                 <p>
                   Success Rate:{" "}
-                  {launchpad.launchAttempts
-                    ? (
-                        (launchpad.launchSuccesses / launchpad.launchAttempts) *
-                        100
-                      ).toFixed(2)
-                    : 0}
+                  {(
+                    (launchpad.launchSuccesses / launchpad.launchAttempts) *
+                    100
+                  ).toFixed(2)}
                   %
                 </p>
               </div>
@@ -107,22 +99,16 @@ export default async function LaunchpadDetailsPage({
             </CardHeader>
             <CardContent>
               <ul className="list-disc list-inside">
-                {launchpad.launches.length > 0 ? (
-                  launchpad.launches.slice(0, 5).map((launch, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-gray-600 dark:text-gray-400"
-                    >
-                      <Link href={`/explore/launches/${launch.name}`}>
-                        {launch.name}
-                      </Link>
-                    </li>
-                  ))
-                ) : (
-                  <li className="text-sm text-gray-600 dark:text-gray-400">
-                    No recent launches
+                {launchpad.launches.slice(0, 5).map((launch, index) => (
+                  <li
+                    key={index}
+                    className="text-sm text-gray-600 dark:text-gray-400"
+                  >
+                    <Link href={`/explore/launches/${launch.name}`}>
+                      {launch.name}
+                    </Link>
                   </li>
-                )}
+                ))}
               </ul>
             </CardContent>
           </Card>

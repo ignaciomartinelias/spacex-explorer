@@ -54,19 +54,12 @@ export default async function LandpadPage({
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               {landpad.details}
             </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center space-x-2">
-                <MapPinIcon className="h-5 w-5 text-gray-500" />
-                <span>
-                  {landpad.locality}, {landpad.region}
-                </span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <GlobeIcon className="h-5 w-5 text-gray-500" />
-                <span>
-                  Lat: {landpad.latitude}, Long: {landpad.longitude}
-                </span>
-              </div>
+
+            <div className="flex items-center space-x-2">
+              <MapPinIcon className="h-5 w-5 text-gray-500" />
+              <span>
+                {landpad.locality}, {landpad.region}
+              </span>
             </div>
           </CardContent>
         </Card>
