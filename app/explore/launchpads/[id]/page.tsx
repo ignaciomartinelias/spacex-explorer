@@ -7,10 +7,17 @@ import { Badge } from "@/components/ui/badge";
 import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
 import { useLaunchpadsQuery } from "@/api/launchpads/queries";
 import { useLaunchesQuery } from "@/api/launches/queries";
+import { useRocketsQuery } from "@/api/rockets/queries";
 
-export default function LaunchpadPage({ params }: { params: { id: string } }) {
+export default function LaunchpadDetailsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { data: launchpads } = useLaunchpadsQuery();
   const { data: launches } = useLaunchesQuery();
+  const { data: rockets } = useRocketsQuery();
+
   const launchpad = launchpads?.find((lp) => lp.id === params.id);
 
   if (!launchpad) {
@@ -70,6 +77,7 @@ export default function LaunchpadPage({ params }: { params: { id: string } }) {
             </div>
           </CardContent>
         </Card>
+
         <div className="space-y-6">
           <Card>
             <CardHeader>
@@ -84,10 +92,12 @@ export default function LaunchpadPage({ params }: { params: { id: string } }) {
                 <p>Successes: {launchpad.launchSuccesses}</p>
                 <p>
                   Success Rate:{" "}
-                  {(
-                    (launchpad.launchSuccesses / launchpad.launchAttempts) *
-                    100
-                  ).toFixed(2)}
+                  {launchpad.launchAttempts
+                    ? (
+                        (launchpad.launchSuccesses / launchpad.launchAttempts) *
+                        100
+                      ).toFixed(2)
+                    : 0}
                   %
                 </p>
               </div>
@@ -102,14 +112,20 @@ export default function LaunchpadPage({ params }: { params: { id: string } }) {
             </CardHeader>
             <CardContent>
               <ul className="list-disc list-inside">
-                {launchpad.launches.slice(0, 5).map((launch, index) => (
-                  <li
-                    key={index}
-                    className="text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    {launches?.find((l) => l.id === launch)?.name}
+                {launchpad.launches.length > 0 ? (
+                  launchpad.launches.slice(0, 5).map((launch, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-gray-600 dark:text-gray-400"
+                    >
+                      {launches?.find((l) => l.id === launch)?.name}
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-sm text-gray-600 dark:text-gray-400">
+                    No recent launches
                   </li>
-                ))}
+                )}
               </ul>
             </CardContent>
           </Card>
@@ -122,14 +138,20 @@ export default function LaunchpadPage({ params }: { params: { id: string } }) {
             </CardHeader>
             <CardContent>
               <ul className="list-disc list-inside">
-                {launchpad.rockets.map((rocket, index) => (
-                  <li
-                    key={index}
-                    className="text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    Rocket ID: {rocket}
+                {launchpad.rockets.length > 0 ? (
+                  launchpad.rockets.map((rocket, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-gray-600 dark:text-gray-400"
+                    >
+                      {rockets?.find((r) => r.id === rocket)?.name}
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-sm text-gray-600 dark:text-gray-400">
+                    No rockets
                   </li>
-                ))}
+                )}
               </ul>
             </CardContent>
           </Card>

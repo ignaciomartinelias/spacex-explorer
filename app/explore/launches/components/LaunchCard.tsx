@@ -14,10 +14,10 @@ type Props = { launch: Launch };
 
 export const LaunchCard = ({ launch }: Props) => {
   const { data: rockets } = useRocketsQuery();
-  const { data: launchPads } = useLaunchpadsQuery();
+  const { data: launchpads } = useLaunchpadsQuery();
 
   const rocket = rockets?.find((rocket) => rocket.id === launch.rocket);
-  const launchPad = launchPads?.find((lp) => lp.id === launch.launchpad);
+  const launchpad = launchpads?.find((lp) => lp.id === launch.launchpad);
 
   return (
     <Card key={launch.id} className="flex flex-col">
@@ -60,7 +60,7 @@ export const LaunchCard = ({ launch }: Props) => {
           </div>
           <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-2" />
-            <span className="text-sm">{launchPad?.name}</span>
+            <span className="text-sm">{launchpad?.name}</span>
           </div>
           <div className="flex items-center">
             <Calendar className="h-4 w-4 mr-2" />
