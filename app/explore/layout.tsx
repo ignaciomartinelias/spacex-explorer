@@ -7,7 +7,7 @@ type Props = {
 
 export default function ExploreLayout({ children }: Props) {
   return (
-    <div className="flex min-h-screen bg-background text-foreground">
+    <div className="flex h-dvh bg-background text-foreground">
       <div className="hidden border-r border-border bg-card md:block md:w-[220px] lg:w-[280px]">
         <Sidebar />
       </div>

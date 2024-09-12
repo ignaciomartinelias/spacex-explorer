@@ -18,8 +18,9 @@ import {
 } from "@/components/ui/accordion";
 
 import { categories } from "../consts";
+import { SidebarLink } from "./SidebarLink";
 
-export const Sidebar = () => (
+export const Sidebar = ({ isMobile = false }: { isMobile?: boolean }) => (
   <div className="flex h-full max-h-screen flex-col gap-2">
     <div className="flex h-14 items-center border-b border-border px-4 lg:h-[60px] lg:px-6">
       <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -29,20 +30,22 @@ export const Sidebar = () => (
     </div>
     <div className="flex-1">
       <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-        <Link
+        <SidebarLink
+          isMobile={isMobile}
           href="/explore"
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
         >
           <Home className="h-4 w-4" />
           Home
-        </Link>
-        <Link
+        </SidebarLink>
+        <SidebarLink
+          isMobile={isMobile}
           href="/favorites"
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
         >
           <Star className="h-4 w-4" />
           Favorites
-        </Link>
+        </SidebarLink>
 
         <Accordion type="single" collapsible defaultValue="categories">
           <AccordionItem value="categories">
@@ -55,14 +58,15 @@ export const Sidebar = () => (
             <AccordionContent>
               <div className="mt-2 space-y-1">
                 {categories.map(({ name, href, Icon }) => (
-                  <Link
+                  <SidebarLink
+                    isMobile={isMobile}
                     key={name}
                     href={href}
                     className="flex items-center gap-3 rounded-lg px-3 py-2 pl-10 text-muted-foreground transition-all hover:text-primary"
                   >
                     <Icon className="h-4 w-4" />
                     {name}
-                  </Link>
+                  </SidebarLink>
                 ))}
               </div>
             </AccordionContent>

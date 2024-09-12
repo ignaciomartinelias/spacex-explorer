@@ -25,7 +25,7 @@ export const Header = () => {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col bg-card w-full">
-          <Sidebar />
+          <Sidebar isMobile />
         </SheetContent>
       </Sheet>
       <div className="w-full flex-1">
