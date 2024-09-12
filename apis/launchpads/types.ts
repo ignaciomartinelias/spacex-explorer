@@ -1,4 +1,4 @@
-type Launchpad = {
+type Launchpad<T extends "simple" | "populated" = "simple"> = {
   images: {
     large: string[];
   };
@@ -10,12 +10,14 @@ type Launchpad = {
   longitude: number;
   launchAttempts: number;
   launchSuccesses: number;
-  rockets: string[];
+  rockets: Pick<Rocket, T extends "populated" ? "name" : "id">[];
   timezone: string;
-  launches: string[];
+  launches: Pick<Launch, T extends "populated" ? "name" : "id">[];
   status: string;
   details: string;
   id: string;
 };
 
-type FetchLaunchpadsResponse = Launchpad[];
+type FetchLaunchpadResponse = QueryResponse<Launchpad<"populated">>;
+
+type FetchLaunchpadsResponse = QueryResponse<Launchpad>;

@@ -1,27 +1,22 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
-import { useLaunchpadsQuery } from "@/apis/launchpads/queries";
-import { useLaunchesQuery } from "@/apis/launches/queries";
-import { useRocketsQuery } from "@/apis/rockets/queries";
+import { fetchLaunchpad } from "@/apis/launchpads/api";
+import { notFound } from "next/navigation";
 
-export default function LaunchpadDetailsPage({
+export default async function LaunchpadDetailsPage({
   params,
 }: {
-  params: { id: string };
+  params: { name: string };
 }) {
-  const { data: launchpads } = useLaunchpadsQuery();
-  const { data: launches } = useLaunchesQuery();
-  const { data: rockets } = useRocketsQuery();
-
-  const launchpad = launchpads?.find((lp) => lp.id === params.id);
+  const launchpad = await fetchLaunchpad({
+    name: decodeURIComponent(params.name),
+  });
 
   if (!launchpad) {
-    return null;
+    notFound();
   }
 
   return (
@@ -118,7 +113,9 @@ export default function LaunchpadDetailsPage({
                       key={index}
                       className="text-sm text-gray-600 dark:text-gray-400"
                     >
-                      {launches?.find((l) => l.id === launch)?.name}
+                      <Link href={`/explore/launches/${launch.name}`}>
+                        {launch.name}
+                      </Link>
                     </li>
                   ))
                 ) : (
@@ -144,7 +141,9 @@ export default function LaunchpadDetailsPage({
                       key={index}
                       className="text-sm text-gray-600 dark:text-gray-400"
                     >
-                      {rockets?.find((r) => r.id === rocket)?.name}
+                      <Link href={`/explore/rockets/${rocket.name}`}>
+                        {rocket.name}
+                      </Link>
                     </li>
                   ))
                 ) : (

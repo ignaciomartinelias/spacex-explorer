@@ -1,4 +1,4 @@
-type Landpad = {
+type Landpad<T extends "simple" | "populated" = "simple"> = {
   images: {
     large: string[];
   };
@@ -14,8 +14,10 @@ type Landpad = {
   landingSuccesses: number;
   wikipedia: string;
   details: string;
-  launches: string[];
+  launches: Pick<Launch, T extends "populated" ? "name" : "id">[];
   id: string;
 };
 
-type FetchLandpadsResponse = Landpad[];
+type FetchLandpadResponse = QueryResponse<Landpad<"populated">>;
+
+type FetchLandpadsResponse = QueryResponse<Landpad>;

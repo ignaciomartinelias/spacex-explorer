@@ -4,10 +4,7 @@ import Image from "next/image";
 
 export const CrewMemberCard = ({ crewMember }: { crewMember: CrewMember }) => {
   return (
-    <Card
-      key={crewMember.id}
-      className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-    >
+    <Card className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="aspect-[2/3] relative">
         <Image
           src={crewMember.image}

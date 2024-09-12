@@ -48,7 +48,9 @@ export const LaunchpadCard = ({ launchpad }: { launchpad: Launchpad }) => {
       </CardContent>
       <CardFooter className="p-4 bg-gray-50 dark:bg-gray-800">
         <Button asChild className="w-full">
-          <Link href={`/explore/launchpads/${launchpad.id}`}>View Details</Link>
+          <Link href={`/explore/launchpads/${launchpad.name}`}>
+            View Details
+          </Link>
         </Button>
       </CardFooter>
     </Card>

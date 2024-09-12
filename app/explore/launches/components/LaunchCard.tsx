@@ -1,26 +1,14 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Rocket } from "lucide-react";
 import { format } from "date-fns";
-import { useRocketsQuery } from "@/apis/rockets/queries";
 
 import Image from "next/image";
-import { useLaunchpadsQuery } from "@/apis/launchpads/queries";
 
-type Props = { launch: Launch };
-
-export const LaunchCard = ({ launch }: Props) => {
-  const { data: rockets } = useRocketsQuery();
-  const { data: launchpads } = useLaunchpadsQuery();
-
-  const rocket = rockets?.find((rocket) => rocket.id === launch.rocket);
-  const launchpad = launchpads?.find((lp) => lp.id === launch.launchpad);
-
+export const LaunchCard = ({ launch }: { launch: Launch }) => {
   return (
-    <Card key={launch.id} className="flex flex-col">
+    <Card className="flex flex-col">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-bold line-clamp-1">
@@ -56,11 +44,11 @@ export const LaunchCard = ({ launch }: Props) => {
         <div className="space-y-2">
           <div className="flex items-center">
             <Rocket className="h-4 w-4 mr-2" />
-            <span className="text-sm">{rocket?.name}</span>
+            <span className="text-sm">{launch.rocket.name}</span>
           </div>
           <div className="flex items-center">
             <MapPin className="h-4 w-4 mr-2" />
-            <span className="text-sm">{launchpad?.name}</span>
+            <span className="text-sm">{launch.launchpad.name}</span>
           </div>
           <div className="flex items-center">
             <Calendar className="h-4 w-4 mr-2" />

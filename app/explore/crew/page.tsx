@@ -1,10 +1,8 @@
-"use client";
-
-import { useCrewQuery } from "@/apis/crew/queries";
+import { fetchCrewMembers } from "@/apis/crew/api";
 import { CrewMemberCard } from "./components/CrewMemberCard";
 
-export default function CrewPage() {
-  const { data } = useCrewQuery();
+export default async function CrewPage() {
+  const crew = await fetchCrewMembers();
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -12,7 +10,7 @@ export default function CrewPage() {
         SpaceX Crew Members
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {data?.map((crewMember) => (
+        {crew.map((crewMember) => (
           <CrewMemberCard key={crewMember.id} crewMember={crewMember} />
         ))}
       </div>

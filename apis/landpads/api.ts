@@ -1,6 +1,32 @@
 import { axiosInstance } from "@/services/axios";
 
 export const fetchLandpads = async () => {
-  const response = await axiosInstance.get("/v4/landpads");
-  return response.data as FetchLandpadsResponse;
+  const response = await axiosInstance.post<FetchLandpadsResponse>(
+    "/v4/landpads/query"
+  );
+  return response.data.docs;
+};
+
+export const fetchLandpad = async ({ name }: { name: string }) => {
+  const response = await axiosInstance.post<FetchLandpadResponse>(
+    "/v4/landpads/query",
+    {
+      query: {
+        name,
+      },
+      options: {
+        limit: 1,
+        populate: [
+          {
+            path: "launches",
+            select: {
+              name: 1,
+              id: 1,
+            },
+          },
+        ],
+      },
+    }
+  );
+  return response.data.docs[0];
 };

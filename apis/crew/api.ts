@@ -1,6 +1,9 @@
 import { axiosInstance } from "@/services/axios";
 
-export const fetchCrew = async () => {
-  const response = await axiosInstance.get("/v4/crew");
-  return response.data as FetchCrewResponse;
+export const fetchCrewMembers = async () => {
+  const response = await axiosInstance.post<FetchCrewMembersResponse>(
+    "/v4/crew/query"
+  );
+
+  return response.data.docs;
 };

@@ -7,10 +7,7 @@ import Link from "next/link";
 
 export const LandpadCard = ({ landpad }: { landpad: Landpad }) => {
   return (
-    <Card
-      key={landpad.id}
-      className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300"
-    >
+    <Card className="flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative h-48">
         <Image
           src={landpad.images.large[0]}
@@ -48,7 +45,7 @@ export const LandpadCard = ({ landpad }: { landpad: Landpad }) => {
       </CardContent>
       <CardFooter className="p-4 bg-gray-50 dark:bg-gray-800">
         <Button asChild className="w-full">
-          <Link href={`/explore/landpads/${landpad.id}`}>View Details</Link>
+          <Link href={`/explore/landpads/${landpad.name}`}>View Details</Link>
         </Button>
       </CardFooter>
     </Card>

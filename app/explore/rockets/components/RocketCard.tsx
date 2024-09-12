@@ -44,7 +44,7 @@ export const RocketCard = ({ rocket }: { rocket: Rocket }) => {
         </div>
         <CardFooter className="p-0 mt-4 flex justify-end items-end">
           <Button asChild>
-            <Link href={`/rockets/${rocket.id}`}>View Details</Link>
+            <Link href={`/rockets/${rocket.name}`}>View Details</Link>
           </Button>
         </CardFooter>
       </div>

@@ -1,22 +1,21 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
-import { useLandpadsQuery } from "@/apis/landpads/queries";
-import { useLaunchesQuery } from "@/apis/launches/queries";
+import { fetchLandpad } from "@/apis/landpads/api";
+import { notFound } from "next/navigation";
 
-export default function LandpadPage({ params }: { params: { id: string } }) {
-  const { data: landpads } = useLandpadsQuery();
-  const { data: launches } = useLaunchesQuery();
-
-  const landpad = landpads?.find((lp) => lp.id === params.id);
+export default async function LandpadPage({
+  params,
+}: {
+  params: { name: string };
+}) {
+  const landpad = await fetchLandpad({ name: decodeURIComponent(params.name) });
 
   if (!landpad) {
-    return null;
+    notFound();
   }
 
   return (
@@ -108,7 +107,9 @@ export default function LandpadPage({ params }: { params: { id: string } }) {
                     key={index}
                     className="text-sm text-gray-600 dark:text-gray-400"
                   >
-                    {launches?.find((l) => l.id === launch)?.name}
+                    <Link href={`/explore/launches/${launch.name}`}>
+                      {launch.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

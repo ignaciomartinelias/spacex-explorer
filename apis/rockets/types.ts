@@ -95,4 +95,4 @@ type Rocket = {
   id: string;
 };
 
-type FetchRocketsResponse = Rocket[];
+type FetchRocketsResponse = QueryResponse<Rocket>;

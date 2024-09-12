@@ -58,7 +58,7 @@ type Launch = {
   staticFireDateUnix: number | null;
   net: boolean;
   window: number;
-  rocket: string;
+  rocket: Pick<Rocket, "name">;
   success: boolean;
   failures: Failure[];
   details: string | null;
@@ -66,7 +66,7 @@ type Launch = {
   ships: string[];
   capsules: string[];
   payloads: string[];
-  launchpad: string;
+  launchpad: Pick<Launchpad, "name">;
   flightNumber: number;
   name: string;
   dateUtc: string;
@@ -81,4 +81,4 @@ type Launch = {
   id: string;
 };
 
-type FetchLaunchesResponse = Launch[];
+type FetchLaunchesResponse = QueryResponse<Launch>;

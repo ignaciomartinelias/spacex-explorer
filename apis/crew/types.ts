@@ -8,4 +8,4 @@ type CrewMember = {
   id: string;
 };
 
-type FetchCrewResponse = CrewMember[];
+type FetchCrewMembersResponse = QueryResponse<CrewMember>;
