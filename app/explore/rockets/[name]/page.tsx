@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchRocket } from "@/apis/rockets/api";
-import { RocketImageCarousel } from "./components/RocketImageCarousel";
+import { ImageCarousel } from "../../components/ImageCarousel";
 
 export default async function RocketDetailsPage({
   params,
@@ -31,7 +31,7 @@ export default async function RocketDetailsPage({
         <div className="lg:w-2/3">
           <Card className="mb-8">
             <CardContent className="p-6">
-              <RocketImageCarousel rocket={rocket} />
+              <ImageCarousel images={rocket.flickrImages} name={rocket.name} />
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h1 className="text-3xl font-bold mb-2">{rocket.name}</h1>

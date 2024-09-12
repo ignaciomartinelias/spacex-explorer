@@ -12,7 +12,7 @@ type Launchpad<T extends "simple" | "populated" = "simple"> = {
   launchSuccesses: number;
   rockets: Pick<Rocket, T extends "populated" ? "name" : "id">[];
   timezone: string;
-  launches: Pick<Launch, T extends "populated" ? "name" : "id">[];
+  launches: Pick<Launch, T extends "populated" ? "name" | "dateUtc" : "id">[];
   status: string;
   details: string;
   id: string;

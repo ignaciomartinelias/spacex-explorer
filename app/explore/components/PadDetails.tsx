@@ -3,7 +3,13 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPinIcon, RocketIcon, GlobeIcon, CalendarIcon } from "lucide-react";
+import {
+  MapPinIcon,
+  RocketIcon,
+  GlobeIcon,
+  CalendarIcon,
+  ExternalLinkIcon,
+} from "lucide-react";
 
 export const PadDetails = ({
   pad,
@@ -22,7 +28,7 @@ export const PadDetails = ({
         href={`/explore/${isLandpad ? "landpads" : "launchpads"}`}
         className="text-blue-500 hover:text-blue-700 mb-4 inline-block"
       >
-        &larr; Back to Landpads
+        &larr; Back to {isLandpad ? "Landpads" : "Launchpads"}
       </Link>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <Card className="lg:col-span-2">
@@ -39,7 +45,7 @@ export const PadDetails = ({
               <p className="text-xl text-gray-300">{pad.fullName}</p>
             </div>
           </div>
-          <CardContent className="mt-4">
+          <CardContent className="mt-4 flex flex-col">
             <div className="flex items-center space-x-2 mb-4">
               <Badge
                 variant={pad.status === "active" ? "default" : "secondary"}
@@ -52,7 +58,7 @@ export const PadDetails = ({
               {pad.details}
             </p>
 
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 mt-auto">
               <MapPinIcon className="h-5 w-5 text-gray-500" />
               <span>
                 {pad.locality}, {pad.region}
@@ -65,7 +71,7 @@ export const PadDetails = ({
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <RocketIcon className="h-5 w-5" />
-                <span>Landing Statistics</span>
+                <span>{isLandpad ? "Landing" : "Launch"} Statistics</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -84,24 +90,28 @@ export const PadDetails = ({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="list-disc list-inside">
-                {pad.launches.length > 0 ? (
-                  pad.launches.slice(0, 5).map((launch, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-gray-600 dark:text-gray-400"
-                    >
-                      <Link href={`/explore/launches/${launch.name}`}>
-                        {launch.name}
-                      </Link>
-                    </li>
-                  ))
-                ) : (
-                  <li className="text-sm text-gray-600 dark:text-gray-400">
-                    No launches
-                  </li>
-                )}
-              </ul>
+              {pad.launches.length > 0 ? (
+                <div className="space-y-3">
+                  {pad.launches.slice(0, 5).map((launch, index) => (
+                    <Link key={index} href={`/explore/launches/${launch.name}`}>
+                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <RocketIcon className="h-5 w-5 text-gray-500" />
+                        <div className="w-full">
+                          <p className="font-medium text-sm">{launch.name}</p>
+                          <p className="text-xs text-gray-500">
+                            {new Date(launch.dateUtc).toLocaleDateString()}
+                          </p>
+                        </div>
+                        <ExternalLinkIcon className="h-4 w-4 ml-auto text-gray-400" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  No launches
+                </p>
+              )}
             </CardContent>
           </Card>
           {isLandpad ? (
@@ -129,28 +139,32 @@ export const PadDetails = ({
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <RocketIcon className="h-5 w-5" />
-                  <span>Rockets</span>
+                  <span>Associated Rockets</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="list-disc list-inside">
-                  {pad.rockets.length > 0 ? (
-                    pad.rockets.map((rocket, index) => (
-                      <li
+                {pad.rockets.length > 0 ? (
+                  <div className="space-y-3">
+                    {pad.rockets.map((rocket, index) => (
+                      <Link
                         key={index}
-                        className="text-sm text-gray-600 dark:text-gray-400"
+                        href={`/explore/rockets/${rocket.name}`}
                       >
-                        <Link href={`/explore/rockets/${rocket.name}`}>
-                          {rocket.name}
-                        </Link>
-                      </li>
-                    ))
-                  ) : (
-                    <li className="text-sm text-gray-600 dark:text-gray-400">
-                      No rockets
-                    </li>
-                  )}
-                </ul>
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                          <RocketIcon className="h-5 w-5 text-gray-500" />
+                          <p className="font-medium text-sm w-full">
+                            {rocket.name}
+                          </p>
+                          <ExternalLinkIcon className="h-4 w-4 ml-auto text-gray-400" />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    No rockets associated
+                  </p>
+                )}
               </CardContent>
             </Card>
           )}

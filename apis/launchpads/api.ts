@@ -21,14 +21,13 @@ export const fetchLaunchpad = async ({ name }: { name: string }) => {
             path: "launches",
             select: {
               name: 1,
-              id: 1,
+              dateUtc: 1,
             },
           },
           {
             path: "rockets",
             select: {
               name: 1,
-              id: 1,
             },
           },
         ],

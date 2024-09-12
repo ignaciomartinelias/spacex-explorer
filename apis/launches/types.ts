@@ -1,3 +1,22 @@
+type Dragon = {
+  waterLanding: boolean | null;
+  landLanding: boolean | null;
+};
+
+type Payload = {
+  dragon: Dragon | null;
+  name: string;
+  type: string;
+  customers: string[];
+  nationalities: string[];
+  manufacturers: string[];
+  massKg: number | null;
+  massLbs: number | null;
+  orbit: string | null;
+  regime: string | null;
+  lifespanYears: number | null;
+};
+
 type Fairings = {
   reused: boolean | null;
   recoveryAttempt: boolean | null;
@@ -51,22 +70,30 @@ type Core = {
   landpad: string | null;
 };
 
-type Launch = {
+type Launch<T extends "simple" | "populated" = "simple"> = {
   fairings: Fairings | null;
   links: Links;
   staticFireDateUtc: string | null;
   staticFireDateUnix: number | null;
   net: boolean;
   window: number;
-  rocket: Pick<Rocket, "name">;
+  rocket: Pick<
+    Rocket,
+    T extends "simple" ? "name" : "name" | "type" | "company" | "successRatePct"
+  >;
   success: boolean;
   failures: Failure[];
   details: string | null;
   crew: string[];
   ships: string[];
   capsules: string[];
-  payloads: string[];
-  launchpad: Pick<Launchpad, "name">;
+  payloads: T extends "simple" ? string[] : Payload[];
+  launchpad: Pick<
+    Launchpad,
+    T extends "simple"
+      ? "name"
+      : "name" | "locality" | "region" | "launchAttempts" | "launchSuccesses"
+  >;
   flightNumber: number;
   name: string;
   dateUtc: string;
@@ -81,4 +108,5 @@ type Launch = {
   id: string;
 };
 
+type FetchLaunchResponse = QueryResponse<Launch<"populated">>;
 type FetchLaunchesResponse = QueryResponse<Launch>;

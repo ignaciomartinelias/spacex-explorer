@@ -4,18 +4,25 @@ import Image from "next/image";
 
 import { useState } from "react";
 
-export const RocketImageCarousel = ({ rocket }: { rocket: Rocket }) => {
+export const ImageCarousel = ({
+  images,
+  name,
+}: {
+  images: string[];
+  name: string;
+}) => {
+  const reducedImages = images.slice(0, 5);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === rocket.flickrImages.length - 1 ? 0 : prevIndex + 1
+      prevIndex === reducedImages.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? rocket.flickrImages.length - 1 : prevIndex - 1
+      prevIndex === 0 ? reducedImages.length - 1 : prevIndex - 1
     );
   };
 
@@ -23,16 +30,16 @@ export const RocketImageCarousel = ({ rocket }: { rocket: Rocket }) => {
     <>
       <div className="mb-4 aspect-[3/2]">
         <Image
-          src={rocket.flickrImages[currentImageIndex]}
-          alt={rocket.name}
+          src={reducedImages[currentImageIndex]}
+          alt={name}
           width={800}
           height={300}
           objectFit="cover"
-          className="rounded-lg h-full"
+          className="rounded-lg h-full object-cover"
         />
       </div>
       <div className="flex justify-center space-x-2 mb-4">
-        {rocket.flickrImages.map((image, index) => (
+        {reducedImages.map((image, index) => (
           <button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
@@ -42,7 +49,7 @@ export const RocketImageCarousel = ({ rocket }: { rocket: Rocket }) => {
           >
             <Image
               src={image}
-              alt={`${rocket.name} thumbnail ${index + 1}`}
+              alt={`${name} thumbnail ${index + 1}`}
               width={64}
               height={64}
               objectFit="cover"

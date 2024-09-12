@@ -14,7 +14,7 @@ type Landpad<T extends "simple" | "populated" = "simple"> = {
   landingSuccesses: number;
   wikipedia: string;
   details: string;
-  launches: Pick<Launch, T extends "populated" ? "name" : "id">[];
+  launches: Pick<Launch, T extends "populated" ? "name" | "dateUtc" : "id">[];
   id: string;
 };
 

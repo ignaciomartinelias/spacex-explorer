@@ -21,7 +21,7 @@ export const fetchLandpad = async ({ name }: { name: string }) => {
             path: "launches",
             select: {
               name: 1,
-              id: 1,
+              dateUtc: 1,
             },
           },
         ],

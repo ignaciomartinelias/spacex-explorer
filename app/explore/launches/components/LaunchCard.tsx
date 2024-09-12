@@ -1,14 +1,22 @@
 import { Badge } from "@/components/ui/badge";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Calendar, MapPin, Rocket } from "lucide-react";
 import { format } from "date-fns";
 
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const LaunchCard = ({ launch }: { launch: Launch }) => {
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg font-bold line-clamp-1">
@@ -58,6 +66,11 @@ export const LaunchCard = ({ launch }: { launch: Launch }) => {
           </div>
         </div>
       </CardContent>
+      <CardFooter>
+        <Button asChild variant="outline" className="w-full">
+          <Link href={`/explore/launches/${launch.name}`}>View Details</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
