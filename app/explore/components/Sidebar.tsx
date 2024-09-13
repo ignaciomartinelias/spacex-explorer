@@ -74,17 +74,17 @@ export const Sidebar = ({ isMobile = false }: { isMobile?: boolean }) => (
         </Accordion>
       </nav>
     </div>
-    <div className="mt-auto p-4">
+    <div className="mt-auto p-4 hidden md:block">
       <Card className="bg-card">
-        <CardHeader className="p-2 pt-0 md:p-4">
+        <CardHeader className="p-4">
           <CardTitle>Explore More</CardTitle>
           <CardDescription>
             Dive deeper into SpaceX missions and technology.
           </CardDescription>
         </CardHeader>
         <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-          <Button size="sm" variant="secondary" className="w-full">
-            Learn More
+          <Button size="sm" variant="secondary" className="w-full" asChild>
+            <Link href="/explore">Learn More</Link>
           </Button>
         </CardContent>
       </Card>

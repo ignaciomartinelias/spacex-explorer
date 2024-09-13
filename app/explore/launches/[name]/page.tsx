@@ -41,28 +41,28 @@ export default async function LaunchDetailsPage({
         <div className="lg:col-span-2 space-y-8">
           <Card>
             <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div>
+              <div className="flex flex-col mb-4">
+                <div className="flex items-center justify-between">
                   <h1 className="text-3xl font-bold mb-2">{launch.name}</h1>
-                  <p className="text-xl text-gray-600 dark:text-gray-300">
-                    Flight Number: {launch.flightNumber}
-                  </p>
-                </div>
-                <Badge
-                  variant={
-                    launch.upcoming
-                      ? "secondary"
+                  <Badge
+                    variant={
+                      launch.upcoming
+                        ? "secondary"
+                        : launch.success
+                        ? "default"
+                        : "destructive"
+                    }
+                  >
+                    {launch.upcoming
+                      ? "Upcoming"
                       : launch.success
-                      ? "default"
-                      : "destructive"
-                  }
-                >
-                  {launch.upcoming
-                    ? "Upcoming"
-                    : launch.success
-                    ? "Successful"
-                    : "Failed"}
-                </Badge>
+                      ? "Successful"
+                      : "Failed"}
+                  </Badge>
+                </div>
+                <p className="text-xl text-gray-600 dark:text-gray-300">
+                  Flight Number: {launch.flightNumber}
+                </p>
               </div>
               {launch.links.patch.large && (
                 <div className="mb-6">
@@ -78,7 +78,8 @@ export default async function LaunchDetailsPage({
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {launch.details}
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <Separator className="my-4 md:hidden" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center space-x-2">
                   <CalendarIcon className="h-5 w-5 text-gray-500" />
                   <span>{format(new Date(launch.dateUtc), "PPP")}</span>
@@ -257,12 +258,20 @@ export default async function LaunchDetailsPage({
             <CardContent>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2">
-                  {launch.success ? (
+                  {launch.upcoming ? (
+                    <ClockIcon className="h-5 w-5 text-blue-500" />
+                  ) : launch.success ? (
                     <CheckCircleIcon className="h-5 w-5 text-green-500" />
                   ) : (
                     <XCircleIcon className="h-5 w-5 text-red-500" />
                   )}
-                  <span>{launch.success ? "Successful" : "Failed"}</span>
+                  <span>
+                    {launch.upcoming
+                      ? "Upcoming"
+                      : launch.success
+                      ? "Successful"
+                      : "Failed"}
+                  </span>
                 </div>
                 {launch.failures.length > 0 && (
                   <div>
