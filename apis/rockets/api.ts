@@ -5,6 +5,7 @@ export const fetchRockets = async () => {
     "/v4/rockets/query",
     {
       options: {
+        limit: 1000,
         sort: {
           active: "desc",
           firstFlight: "desc",

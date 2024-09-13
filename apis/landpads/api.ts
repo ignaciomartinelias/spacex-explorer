@@ -2,7 +2,12 @@ import { axiosInstance } from "@/services/axios";
 
 export const fetchLandpads = async () => {
   const response = await axiosInstance.post<FetchLandpadsResponse>(
-    "/v4/landpads/query"
+    "/v4/landpads/query",
+    {
+      options: {
+        limit: 1000,
+      },
+    }
   );
   return response.data.docs;
 };

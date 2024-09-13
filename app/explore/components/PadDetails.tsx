@@ -92,20 +92,26 @@ export const PadDetails = ({
             <CardContent>
               {pad.launches.length > 0 ? (
                 <div className="space-y-3">
-                  {pad.launches.slice(0, 5).map((launch, index) => (
-                    <Link key={index} href={`/explore/launches/${launch.name}`}>
-                      <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                        <RocketIcon className="h-5 w-5 text-gray-500" />
-                        <div className="w-full">
-                          <p className="font-medium text-sm">{launch.name}</p>
-                          <p className="text-xs text-gray-500">
-                            {new Date(launch.dateUtc).toLocaleDateString()}
-                          </p>
+                  {pad.launches
+                    .slice(pad.launches.length - 5)
+                    .reverse()
+                    .map((launch, index) => (
+                      <Link
+                        key={index}
+                        href={`/explore/launches/${launch.name}`}
+                      >
+                        <div className="flex items-center space-x-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                          <RocketIcon className="h-5 w-5 text-gray-500" />
+                          <div className="w-full">
+                            <p className="font-medium text-sm">{launch.name}</p>
+                            <p className="text-xs text-gray-500">
+                              {new Date(launch.dateUtc).toLocaleDateString()}
+                            </p>
+                          </div>
+                          <ExternalLinkIcon className="h-4 w-4 ml-auto text-gray-400" />
                         </div>
-                        <ExternalLinkIcon className="h-4 w-4 ml-auto text-gray-400" />
-                      </div>
-                    </Link>
-                  ))}
+                      </Link>
+                    ))}
                 </div>
               ) : (
                 <p className="text-sm text-gray-600 dark:text-gray-400">

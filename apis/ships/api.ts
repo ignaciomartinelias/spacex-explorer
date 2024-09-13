@@ -1,20 +1,24 @@
 import { axiosInstance } from "@/services/axios";
 
-export const fetchLaunchpads = async () => {
-  const response = await axiosInstance.post<FetchLaunchpadsResponse>(
-    "/v4/launchpads/query",
+export const fetchShips = async () => {
+  const response = await axiosInstance.post<FetchShipsResponse>(
+    "/v4/ships/query",
     {
       options: {
         limit: 1000,
+        sort: {
+          active: "desc",
+          yearBuilt: "desc",
+        },
       },
     }
   );
   return response.data.docs;
 };
 
-export const fetchLaunchpad = async ({ name }: { name: string }) => {
-  const response = await axiosInstance.post<FetchLaunchpadResponse>(
-    `/v4/launchpads/query`,
+export const fetchShip = async ({ name }: { name: string }) => {
+  const response = await axiosInstance.post<FetchShipResponse>(
+    `/v4/ships/query`,
     {
       query: {
         name,
@@ -27,12 +31,7 @@ export const fetchLaunchpad = async ({ name }: { name: string }) => {
             select: {
               name: 1,
               dateUtc: 1,
-            },
-          },
-          {
-            path: "rockets",
-            select: {
-              name: 1,
+              success: 1,
             },
           },
         ],

@@ -42,8 +42,8 @@ export default async function LaunchDetailsPage({
           <Card>
             <CardContent className="p-6">
               <div className="flex flex-col mb-4">
-                <div className="flex items-center justify-between">
-                  <h1 className="text-3xl font-bold mb-2">{launch.name}</h1>
+                <div className="flex md:items-center md:justify-between flex-col md:flex-row">
+                  <h1 className="text-2xl font-bold mb-2">{launch.name}</h1>
                   <Badge
                     variant={
                       launch.upcoming
@@ -52,6 +52,7 @@ export default async function LaunchDetailsPage({
                         ? "default"
                         : "destructive"
                     }
+                    className="w-fit"
                   >
                     {launch.upcoming
                       ? "Upcoming"
@@ -60,7 +61,7 @@ export default async function LaunchDetailsPage({
                       : "Failed"}
                   </Badge>
                 </div>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
+                <p className="text-xl text-gray-600 dark:text-gray-300 hidden md:block">
                   Flight Number: {launch.flightNumber}
                 </p>
               </div>

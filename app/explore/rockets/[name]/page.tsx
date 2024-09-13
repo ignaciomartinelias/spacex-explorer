@@ -32,16 +32,16 @@ export default async function RocketDetailsPage({
           <Card className="mb-8">
             <CardContent className="p-6">
               <ImageCarousel images={rocket.flickrImages} name={rocket.name} />
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h1 className="text-3xl font-bold mb-2">{rocket.name}</h1>
-                  <p className="text-xl text-gray-600 dark:text-gray-300">
-                    {rocket.company}
-                  </p>
+              <div className="flex flex-col mb-4">
+                <div className="flex items-center justify-between">
+                  <h1 className="text-2xl font-bold mb-2">{rocket.name}</h1>
+                  <Badge variant={rocket.active ? "default" : "secondary"}>
+                    {rocket.active ? "Active" : "Inactive"}
+                  </Badge>
                 </div>
-                <Badge variant={rocket.active ? "default" : "secondary"}>
-                  {rocket.active ? "Active" : "Inactive"}
-                </Badge>
+                <p className="text-xl text-gray-600 dark:text-gray-300">
+                  {rocket.company}
+                </p>
               </div>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {rocket.description}
