@@ -42,7 +42,7 @@ export const LaunchCard = ({ launch }: { launch: Launch }) => {
       <CardContent className="flex-grow">
         <div className="aspect-video relative mb-4">
           <Image
-            src={launch.links.patch.small || "/SpaceX.png"}
+            src={launch.links.patch.small || "/spacex-logo.png"}
             alt={`${launch.name} mission patch`}
             className="w-full h-full object-contain"
             width={256}

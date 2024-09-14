@@ -57,7 +57,7 @@ export default async function ShipDetailsPage({
               </div>
               <div className="aspect-video relative mb-6">
                 <Image
-                  src={ship.image || "/spacex.png"}
+                  src={ship.image || "/spacex-logo.png"}
                   alt={ship.name}
                   layout="fill"
                   objectFit="cover"

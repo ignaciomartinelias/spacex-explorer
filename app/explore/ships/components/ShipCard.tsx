@@ -19,7 +19,7 @@ export const ShipCard = ({ ship }: { ship: Ship }) => {
       <CardContent className="flex-grow">
         <div className="aspect-video relative mb-4">
           <Image
-            src={ship.image || "/spacex.png"}
+            src={ship.image || "/spacex-logo.png"}
             alt={ship.name}
             layout="fill"
             objectFit="cover"
