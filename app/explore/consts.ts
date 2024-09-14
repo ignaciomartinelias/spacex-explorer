@@ -51,11 +51,6 @@ export const categories: {
     href: "/explore/company",
   },
   {
-    name: "Roadster",
-    Icon: Car,
-    href: "/explore/roadster",
-  },
-  {
     name: "Starlink",
     Icon: Satellite,
     href: "/explore/starlink",
